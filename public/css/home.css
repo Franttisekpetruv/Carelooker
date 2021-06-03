@@ -1,0 +1,113 @@
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: white;
+}
+
+a {
+    text-decoration: none;
+    text-transform: uppercase;
+    color: inherit;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.header-items {
+    color: white;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    margin-inline: auto;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    width: 100vw;
+    height: 4rem;
+    font-size: 2em;
+    position: sticky;
+    background-color: lightblue;
+}
+
+#item {
+    margin: .2rem;
+}
+
+h4 {
+    font-size: 20px;
+    text-align: center;
+    color: black;
+}
+
+.thumbnail {
+    object-fit: cover;
+    display: flex;
+    position: relative;
+    flex-basis: 33%;
+    border-radius: .3rem;
+    width: 20%;
+    height: 12rem;
+}
+
+.card {
+    position: relative;
+    align-items: center;
+    flex-direction: column;
+    font-size: .6rem;
+    list-style: none;
+    display: block;
+    min-width: 50px;
+    max-width: 1000px;
+    background-color: #fafafa;
+    border-radius: .3rem;
+    margin: 10px;
+}
+
+li {
+    list-style: none;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    margin-inline: auto;
+}
+
+ul {
+    padding: 0;
+    margin: 0px;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: row;
+}
+
+.card-text {
+    padding-inline: 10px;
+    width: 100%;
+    font-size: 1rem;
+}
+
+#bannerimg {
+    object-fit: cover;
+    width: 100vw;
+    height: 10em;
+}
+
+.Lthumbnail {
+    border-radius: .5rem;
+    margin: 1rem;
+    display: block;
+    width: 300px;
+    height: auto;
+}
+
+input {
+    margin: .5em;
+}

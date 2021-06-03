@@ -1,0 +1,39 @@
+<% layout('/layouts/bp') %>
+    <form action="/show" method="POST" novalidate class="validated-form">
+
+        <label for="title" class="form-label">Name</label>
+        <input type="text" class="form-control" name="hospital[Name]" required>
+
+
+        <label for="location" class="form-label">Location</label>
+        <input type="text" class="form-control" name="hospital[City]" required>
+
+        <label for="Image" class="form-label">Image link</label>
+        <input type="text" class="form-control" name="hospital[Image]" required>
+
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+
+
+
+    </form>
+
+    <script>
+        (function() {
+            'use strict';
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.querySelectorAll('.validated-form');
+            Array.from(forms)
+                // Loop over them and prevent submission
+                .forEach(function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+
+                })
+        })()
+    </script>

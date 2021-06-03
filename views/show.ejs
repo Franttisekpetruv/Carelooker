@@ -1,0 +1,46 @@
+<% layout('/layouts/bp') %>
+    <link rel="stylesheet" type="text/css" href="http://localhost:3003/css/home.css">
+    <div class="banner"><img id="bannerimg" src="<%= hospital.Image%>" alt=""></div>
+    <div class="container">
+
+
+        <h2>
+            <%= hospital.Name %>
+        </h2>
+        <ul>
+            <li>
+                Staffed Beds:
+                <%= hospital.StaffedBeds%>
+            </li>
+            <li>
+                Location:
+                <%= hospital.City%>
+            </li>
+        </ul>
+        <a href="/hospitals">back</a>
+        <a href="/edit/<%=hospital._id%>">edit</a>
+
+        <form action="/show/<%=hospital._id%>?method=DELETE" method="POST">
+            <button>DELETE</button>
+        </form>
+
+        <form action="/show/<%=hospital._id%>/reviews" method="POST">
+            <input type="range" min="1" max="5" name="Review[Rating]" id="">
+            <div>
+                <label for="Body">Review</label>
+                <textarea name="Review[Body]" id="Body" cols="30" rows="4"></textarea>
+                <textarea name="Review[Title]" id="Body" cols="30" rows="4"></textarea>
+                <textarea name="Review[Tags]" id="Body" cols="30" rows="4"></textarea>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+        <div>
+            <% for(let review of hospital.Reviews) { %>
+                <h2>
+                    <%= review.Body %>
+                </h2>
+                <form action="/show/<%=hospital._id%>/reviews/<%=review._id%>?method=DELETE" method="POST">
+                    <button>Delete</button>
+                    <%} %>
+        </div>
+    </div>

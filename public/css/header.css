@@ -1,0 +1,24 @@
+      body {
+          margin: 0;
+      }
+      
+      .main {
+          margin: 0;
+          width: 100vw;
+          height: 100vh;
+          background-position-x: center;
+          background-size: cover;
+          overflow: hidden;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-image: url('https://fm.cnbc.com/applications/cnbc.com/resources/img/editorial/2018/03/05/105044673-GettyImages-513438121.1910x1000.jpg');
+      }
+      
+      .navigation-btn {
+          cursor: pointer;
+          border: none;
+          padding: .5em .8em;
+          border-radius: 8em;
+          background-color: white;
+      }
