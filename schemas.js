@@ -7,3 +7,19 @@ module.exports.hospitalSchema = Joi.object({
         Image: Joi.string(),
     }).required()
 })
+//
+// module.exports.reviewSchema = Joi.object({
+
+//     reveiew: Joi.object({
+//         Title: Joi.string(),
+//         User: Joi.string(),
+//         Rating: Joi.number() ,
+//         Body: Joi.string(),
+//         Tags: Joi.string(),
+//         Date: Joi.string()
+
+
+//     }).required()
+
+
+// })

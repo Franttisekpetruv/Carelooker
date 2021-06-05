@@ -1,7 +1,7 @@
 //require mongoose
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-const Review = require('models/review.js')
+const Review = require('./review')
     //define a constant of the schema as a new schema which follows the bellow defined 
 const Hospitalschema = new Schema({
 
@@ -10,9 +10,9 @@ const Hospitalschema = new Schema({
     },
     City: { type: String },
     Image: { type: String },
-    StaffedBeds: { type: Number },
-    TotalDischarges: { type: Number },
-    PatientDays: { type: Number },
+    // StaffedBeds: { type: Number },
+    // TotalDischarges: { type: Number },
+    // PatientDays: { type: Number },
     Reviews: [{
         //Specify that the type of this is object ID and reference the model which it comes from
         type: Schema.Types.ObjectId,

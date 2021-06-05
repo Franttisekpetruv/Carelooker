@@ -1,22 +1,31 @@
+//! NPM PACKAGES
+//require mongoose
 const mongoose = require('mongoose');
-//get Product from product.js
-const catchAsync = require("./views/catchAsync.js")
+//get the function for catching errors from catchAsyc.js
+const catchAsync = require("./utilities/catchAsync.js")
+    //Require express
 const express = require('express');
 const app = express();
+const ejsMate = require('ejs-mate');
 const path = require('path');
-const Variables = require('./models/Variables') // This might be wrong
+const session = require('express-session')
+const flash = require('connect-flash')
+const ExpressError = require('./utilities/ExpressError')
+    //! VARIABLES
+    //Get all variables and models for mongoose and express
+const Variables = require('./models/Variables')
 const hospitaldata2 = require('./models/hospitals')
 const methodOverride = require('method-override');
 const hospital_profile = require('./models/hospitals');
-const ejsMate = require('ejs-mate');
 const Joi = require('joi');
+const Review = require('./models/review');
+//require schemas for te hospital and review
 const { hospitalSchema, reviewSchema } = require('./schemas.js');
-const Review = require('./models/review.js');
+//require a route for structure froom the routes file 
+const show = require('./routes/hospitals');
 
-var navbar = ['hospitals', 'home', 'methods', 'about', 'story']
-
-
-
+//! MONGOOSE CONNECTION
+//mognoose connection established
 mongoose.connect('mongodb://localhost:27017/hospitals', {
     useNewUrlParser: true,
     useCreateIndex: true,
@@ -28,30 +37,92 @@ mongoose.connect('mongodb://localhost:27017/hospitals', {
     console.log(err);
 })
 
+//! EXPRESS & MIDDLEWARE
+// Set the express engine to run EJS (embedded JS)
 app.engine('ejs', ejsMate)
 
-app.use(express.static('public'))
-app.use('/public', express.static(__dirname + 'public'));
+//Set static file route for css,js and Images
+app.use(express.static(path.join(__dirname, 'public')))
 
+//This allows methods DELETE 
 app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('method'))
 
+//Set different directories for the EJS engine and files
 app.set('views', './views');
 app.set('view engine', 'ejs')
 
-const validateHospital = (req, res, next) => {
+const sessionConfig = {
+    secret: 'thisisasecret',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        httpOnly: true,
+        expires: Date.now() + 10000,
+        maxAge: 10000
 
-    const { error } = hospitalSchema.validate(req.body);
-    if (error) {
-        const msg = error.details.map(el => el.message).join(',')
-        throw new ExpressError(msg, 500)
-
-    } else {
-        next()
     }
 }
+app.use(session(sessionConfig))
+app.use(flash())
 
-// const validateReview = (req, res, next) => {
+app.use((req, res, next) => {
+    res.locals.success = req.flash('success')
+    res.locals.error = req.flash('error')
+    next();
+})
+
+//Set the route for /show routes from refactoring
+app.use('/show', show)
+
+//! ROUTES
+//Render the main page when accessing /
+
+
+app.get('/', (req, res) => {
+
+    // res.render('header.ejs', { navbar })
+    res.render('header.ejs')
+})
+
+//Find all hospitals from hd2 and render them into the template
+//In case this does not work log the error
+app.get('/hospitals', catchAsync(async(req, res, next) => {
+    const hospitals = await hospitaldata2.find({})
+    res.render('hospitals.ejs', { hospitals })
+}))
+
+//Render the template
+app.get('/new', (req, res) => {
+
+    res.render('new.ejs');
+    ``
+})
+
+//Get the id from the requested parameters (If you deconstructed just use req.params)
+//Then find it by the id in the mongodv and render in the template
+app.get('/edit/:id', catchAsync(async(req, res) => {
+    const id = req.params.id
+    const hospital = await hospital_profile.findById(id)
+    res.render('edit.ejs', { hospital })
+}))
+
+app.all('*', (req, res, next) => {
+        next(new ExpressError('Page Not Found', 404))
+    })
+    //Next for when something goes wrong
+app.use((err, req, res, next) => {
+    const { statusCode = 500, message = 'Something went wrong' } = err;
+    res.status(statusCode).send(message)
+
+})
+
+app.listen(3003, () => {
+    console.log('listening');
+})
+
+//* CODE WHICH CAN BE USED LATER FOR VALIDATION
+// const validateReview = (reapp.use('/show', show)q, res, next) => {
 
 //     const { error } = reviewSchema.validate(req.body);
 //     if (error) {
@@ -63,80 +134,15 @@ const validateHospital = (req, res, next) => {
 //     }
 // }
 
+//*This allows us to validate proper input but I am going to fix the data first
+// const validateHospital = (req, res, next) => {
 
+//     const { error } = hospitalSchema.validate(req.body);
+//     if (error) {
+//         const msg = error.details.map(el => el.message).join(',')
+//         throw new ExpressError(msg, 500)
 
-app.get('/', (req, res) => {
-    res.render('header.ejs', { navbar })
-})
-
-app.get('/hospitals', async(req, res, next) => {
-    try {
-        const hospitals = await hospitaldata2.find({})
-        res.render('hospitals.ejs', { hospitals })
-    } catch (err) {
-        next(err)
-    }
-})
-
-app.get('/show/:id', async(req, res) => {
-        const id = req.params.id
-        const hospital = await hospitaldata2.findById(id).populate('Reviews')
-        console.log(hospital);
-        res.render('show.ejs', { hospital });
-    })
-    //add validatereview
-app.post('/show/:id/reviews', async(req, res) => {
-    const id = req.params.id
-    const hospital = await hospitaldata2.findById(id)
-    const review = new Review(req.body.Review)
-    hospital.Reviews.push(review)
-    await review.save()
-    await hospital.save()
-    res.redirect(`/show/${hospital._id}`)
-})
-
-
-
-
-
-app.get('/new', (req, res) => {
-    res.render('new.ejs');
-})
-
-app.post('/show', catchAsync(async(req, res) => {
-    const hospital = new hospitaldata2(req.body.hospital)
-    await hospital.save();
-    res.redirect(`/show/${hospital._id}`)
-}))
-
-app.get('/edit/:id', async(req, res) => {
-    const id = req.params.id
-    const hospital = await hospital_profile.findById(id)
-    res.render('edit.ejs', { hospital })
-})
-
-app.put('/show/:id', async(req, res) => {
-    const { id } = req.params;
-    const hospital = await hospital_profile.findByIdAndUpdate(id, {...req.body.hospital })
-    res.redirect(`/show/${hospital._id}`)
-})
-
-app.delete('/show/:id', async(req, res) => {
-    const { id } = req.params; //the only param is the id 
-    await hospital_profile.findByIdAndDelete(id);
-    res.redirect('/hospitals'); // redirect back to home
-})
-app.delete('/show/:id/reviews/:reviewId', async(req, res) => {
-    const { id, reviewId } = req.params; //the only param is the id 
-    await hospital_profile.findByIdAndUpdate(id, { $pull: { Reviews: reviewId } })
-    await Review.findByIdAndDelete(reviewId);
-    res.redirect(`/show/${id}`); // redirect back to home
-})
-
-app.use((err, req, res, next) => {
-    res.send('Wrong stuff')
-
-})
-app.listen(3003, () => {
-    console.log('listening');
-})
+//     } else {
+//         next()
+//     }
+// }
