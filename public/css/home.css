@@ -1,148 +1,225 @@
-body {
-    margin: 0;
-    font-family: 'Montserrat', sans-serif;
-    background-color: white;
-}
-
-a {
-    text-decoration: none;
-    text-transform: uppercase;
-    color: inherit;
-    font-family: 'Montserrat', sans-serif;
-}
-
-.navbar {
-    z-index: 1;
-    display: flex;
-    color: white;
-    width: 100vw;
-    height: 4rem;
-    font-size: 2em;
-    justify-content: space-between;
-    align-items: center;
-    position: fixed;
-    background-color: rgba(0, 0, 0, 0.3);
-}
-
-.navbar.active {
-    background-color: darkblue;
-}
-
-.hamburger.active {
-    height: 2rem;
-    width: 2rem;
-    background-color: white;
-    border-radius: .5rem;
-    cursor: pointer;
-    box-shadow: inset 0em 0em 0.1em 0.06em lightgray;
-}
-
-.navbar li {
-    padding: .3em;
-}
-
-#item {
-    margin: .23rem;
-}
-
-h4 {
-    font-size: 20px;
-    text-align: center;
-    color: black;
-}
-
-.thumbnail {
-    object-fit: cover;
-    display: flex;
-    position: relative;
-    flex-basis: 33%;
-    border-radius: .3rem;
-    width: 20%;
-    height: 12rem;
-}
-
-.card {
-    z-index: 0;
-    position: relative;
-    align-items: center;
-    flex-direction: column;
-    font-size: .6rem;
-    list-style: none;
-    display: block;
-    min-width: 50px;
-    max-width: 1000px;
-    background-color: #fafafa;
-    border-radius: .3rem;
-    margin: 10px;
-    margin-inline: auto;
-    width: 80%;
-    min-width: 300px;
-}
-
-li {
-    list-style: none;
-}
-
-.hospital-list {
-    z-index: 0;
-    padding-top: 50px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-inline: auto;
-}
-
-ul {
-    padding: 0;
-    margin: 0px;
-}
-
-.card-content {
-    display: flex;
-    flex-direction: row;
-}
-
-.card-text {
-    padding-inline: 10px;
-    width: 100%;
-    font-size: 1rem;
-}
-
-#bannerimg {
-    object-fit: cover;
-    width: 100vw;
-    height: 10em;
-}
-
-.Lthumbnail {
-    border-radius: .5rem;
-    margin: 1rem;
-    display: block;
-    width: 300px;
-    height: auto;
-}
-
-input {
-    margin: .5em;
-}
-
-.sign-in-form {
-    margin-inline: auto;
-    margin-top: 10%;
-}
-
-#submit {
-    transition: .5s;
-    border: none;
-    padding: .3em .8em;
-    background-color: forestgreen;
-    color: white;
-    border-radius: 50px;
-}
-
-#submit:hover {
-    transition: .5s;
-    background-color: lightgreen;
-    color: white;
-    border-radius: 50px;
-}
+    body {
+        margin: 0;
+        font-family: 'Montserrat', sans-serif;
+        background-color: white;
+    }
+    
+    a {
+        text-decoration: none;
+        text-transform: uppercase;
+        color: inherit;
+        font-family: 'Montserrat', sans-serif;
+    }
+    
+    .navbar {
+        z-index: 1;
+        display: flex;
+        color: white;
+        width: 100vw;
+        height: 4rem;
+        font-size: 2em;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        background-color: rgba(0, 0, 0, 0.3);
+    }
+    
+    .navbar.active {
+        z-index: 1;
+        background-color: darkblue;
+    }
+    
+    .hamburger.active {
+        height: 2rem;
+        width: 2rem;
+        background-color: white;
+        border-radius: .5rem;
+        cursor: pointer;
+        box-shadow: inset 0em 0em 0.1em 0.06em lightgray;
+    }
+    
+    .mobileMenu {
+        z-index: 1;
+        transition: all ease-in .3s;
+        align-content: space-between;
+        bottom: 0px;
+        right: 0;
+        position: fixed;
+        height: 100vh;
+        width: 0vw;
+        background-color: white;
+    }
+    
+    .mobileMenu.active {
+        z-index: 1;
+        transition: all ease-in .3s;
+        width: 80vw;
+    }
+    
+    .navbar li {
+        padding: .3em;
+    }
+    
+    #item {
+        margin: .23rem;
+    }
+    
+    h4 {
+        font-size: 20px;
+        text-align: center;
+        color: black;
+    }
+    
+    .thumbnail {
+        object-fit: cover;
+        display: flex;
+        position: relative;
+        flex-basis: 33%;
+        border-radius: .3rem;
+        width: 20vw;
+    }
+    
+    .card {
+        z-index: 0;
+        position: relative;
+        align-items: center;
+        flex-direction: column;
+        font-size: .6rem;
+        list-style: none;
+        display: block;
+        max-width: 80vw;
+        border-radius: .3rem;
+        padding: 10px;
+        margin-inline: auto;
+        width: 80%;
+        min-width: 300px;
+    }
+    
+    li {
+        list-style: none;
+    }
+    
+    .hospital-list {
+        z-index: 0;
+        padding-top: 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-inline: auto;
+    }
+    
+    #back {
+        position: absolute;
+        top: 0;
+    }
+    
+    .hero {
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        justify-content: center;
+    }
+    
+    .container {
+        flex-direction: column;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    ul {
+        padding: 0;
+        margin: 0px;
+    }
+    
+    .card-content {
+        background-color: rgb(247, 247, 247);
+        border-radius: 5px;
+        display: flex;
+        flex-direction: row;
+    }
+    
+    .card-text {
+        padding: 10px 5px;
+        width: 100%;
+        font-size: 1rem;
+    }
+    
+    #bannerimg {
+        object-fit: cover;
+        width: 100vw;
+        text-align: center;
+        opacity: 60%;
+    }
+    
+    .features {
+        margin-top: 2em;
+        border: red solid 1px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+    
+    .banner {
+        z-index: -1;
+        background-color: black;
+        display: grid;
+        align-items: center;
+        justify-items: center;
+    }
+    
+    .warning {
+        width: 80px;
+        height: 30px;
+        text-align: center;
+        margin: 10px;
+        font-family: 'Montserrat', sans-serif;
+        border: none;
+        padding: .5em 1em;
+        background-color: rgb(208, 0, 0);
+        color: white;
+        border-radius: 20px;
+    }
+    
+    .warning:hover {
+        background-color: lightcoral;
+    }
+    
+    #hsTitle {
+        padding: 10px;
+        color: white;
+        font-size: 2.5rem;
+        position: absolute;
+        text-align: center;
+        min-width: 300px;
+        display: flex;
+    }
+    
+    .review {
+        display: flex;
+        flex-direction: column;
+        margin: .5em;
+    }
+    
+    .sign-in-form {
+        margin-inline: auto;
+        margin-top: 10%;
+    }
+    
+    #submit {
+        transition: .5s;
+        border: none;
+        width: 80px;
+        height: 30px;
+        padding: .3em .8em;
+        background-color: forestgreen;
+        color: white;
+        border-radius: 50px;
+    }
+    
+    #submit:hover {
+        transition: .5s;
+        background-color: lightgreen;
+        color: white;
+        border-radius: 50px;
+    }
