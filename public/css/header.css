@@ -3,7 +3,9 @@
       }
       
       .main {
+          z-index: -3;
           margin: 0;
+          position: relative;
           width: 100vw;
           height: 100vh;
           background-position-x: center;
@@ -12,13 +14,71 @@
           display: flex;
           justify-content: center;
           align-items: center;
+          background-position: bottom center;
           background-image: url('https://fm.cnbc.com/applications/cnbc.com/resources/img/editorial/2018/03/05/105044673-GettyImages-513438121.1910x1000.jpg');
       }
       
+      .main::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(9, 20, 255, 0.3);
+          z-index: -3;
+      }
+      
       .navigation-btn {
+          position: absolute;
+          display: inline;
           cursor: pointer;
-          border: none;
           padding: .5em .8em;
           border-radius: 8em;
           background-color: white;
+      }
+      
+      .container {
+          z-index: -1;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: absolute;
+          width: 100vw;
+      }
+      
+      .mobileMenu {
+          transition: all ease-in .3s;
+          align-content: space-between;
+          bottom: 0px;
+          right: 0;
+          position: fixed;
+          height: 90.5vh;
+          width: 0vw;
+          background-color: white;
+      }
+      
+      .profile-picture {
+          width: 50px;
+          height: 50px;
+          border: black solid 1px;
+          border-radius: 50px;
+      }
+      
+      #login {
+          color: red;
+      }
+      
+      .profile {
+          margin-top: 2rem;
+          margin-inline: auto;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 80%;
+      }
+      
+      .mobileMenu.active {
+          transition: all ease-in .3s;
+          width: 80vw;
       }

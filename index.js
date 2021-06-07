@@ -11,6 +11,8 @@ const path = require('path');
 const session = require('express-session')
 const flash = require('connect-flash')
 const ExpressError = require('./utilities/ExpressError')
+const passport = require('passport')
+const passportLocal = require('passport-local')
     //! VARIABLES
     //Get all variables and models for mongoose and express
 const Variables = require('./models/Variables')
@@ -23,6 +25,9 @@ const Review = require('./models/review');
 const { hospitalSchema, reviewSchema } = require('./schemas.js');
 //require a route for structure froom the routes file 
 const show = require('./routes/hospitals');
+const User = require('./models/user')
+const userRouter = require('./routes/users')
+const isLoggedIn = require('./middleware')
 
 //! MONGOOSE CONNECTION
 //mognoose connection established
@@ -64,7 +69,15 @@ const sessionConfig = {
     }
 }
 app.use(session(sessionConfig))
+app.use(passport.initialize())
+    //This is for persistent sessions
+app.use(passport.session())
 app.use(flash())
+    //Use local strategy from model User and method authenticate )STATIC METHOD)
+passport.use(new passportLocal(User.authenticate()))
+    //How to store and unstore from mongoose
+passport.serializeUser(User.serializeUser())
+passport.deserializeUser(User.deserializeUser())
 
 app.use((req, res, next) => {
     res.locals.success = req.flash('success')
@@ -73,11 +86,10 @@ app.use((req, res, next) => {
 })
 
 //Set the route for /show routes from refactoring
+app.use('/', userRouter)
 app.use('/show', show)
-
-//! ROUTES
-//Render the main page when accessing /
-
+    //! ROUTES
+    //Render the main page when accessing /
 
 app.get('/', (req, res) => {
 
@@ -92,16 +104,15 @@ app.get('/hospitals', catchAsync(async(req, res, next) => {
     res.render('hospitals.ejs', { hospitals })
 }))
 
-//Render the template
-app.get('/new', (req, res) => {
 
+//Render the template
+app.get('/new', isLoggedIn, (req, res) => {
     res.render('new.ejs');
-    ``
 })
 
 //Get the id from the requested parameters (If you deconstructed just use req.params)
 //Then find it by the id in the mongodv and render in the template
-app.get('/edit/:id', catchAsync(async(req, res) => {
+app.get('/edit/:id', isLoggedIn, catchAsync(async(req, res) => {
     const id = req.params.id
     const hospital = await hospital_profile.findById(id)
     res.render('edit.ejs', { hospital })

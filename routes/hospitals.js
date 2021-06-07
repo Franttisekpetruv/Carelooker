@@ -3,8 +3,9 @@ const router = express.Router();
 const catchAsync = require("../utilities/catchAsync.js")
 const hospitaldata2 = require('../models/hospitals')
 const Review = require('../models/review');
+const isLoggedIn = require('../middleware')
 
-router.post('/', catchAsync(async(req, res) => {
+router.post('/', isLoggedIn, catchAsync(async(req, res) => {
     const hospital = new hospitaldata2(req.body.hospital)
     await hospital.save();
     req.flash('sucess', 'Succesfully done it')
@@ -24,7 +25,7 @@ router.get('/:id', catchAsync(async(req, res) => {
         res.render('show.ejs', { hospital });
     }))
     //add validatereview
-router.post('/:id/reviews', catchAsync(async(req, res) => {
+router.post('/:id/reviews', isLoggedIn, catchAsync(async(req, res) => {
     const id = req.params.id
     const hospital = await hospitaldata2.findById(id)
     const review = new Review(req.body.Review)
@@ -34,19 +35,19 @@ router.post('/:id/reviews', catchAsync(async(req, res) => {
     res.redirect(`/show/${hospital._id}`)
 }))
 
-router.put('/:id', catchAsync(async(req, res) => {
+router.put('/:id', isLoggedIn, catchAsync(async(req, res) => {
     const { id } = req.params;
     const hospital = await hospitaldata2.findByIdAndUpdate(id, {...req.body.hospital })
     res.redirect(`/show/${hospital._id}`)
 }))
 
-router.delete('/:id', catchAsync(async(req, res) => {
+router.delete('/:id', isLoggedIn, catchAsync(async(req, res) => {
     const { id } = req.params; //the only param is the id 
     await hospitaldata2.findByIdAndDelete(id);
     res.redirect('/hospitals'); // redirect back to home
 }))
 
-router.delete('/:id/reviews/:reviewId', catchAsync(async(req, res) => {
+router.delete('/:id/reviews/:reviewId', isLoggedIn, catchAsync(async(req, res) => {
     const { id, reviewId } = req.params; //the only param is the id 
     await hospitaldata2.findByIdAndUpdate(id, { $pull: { Reviews: reviewId } })
     await Review.findByIdAndDelete(reviewId);

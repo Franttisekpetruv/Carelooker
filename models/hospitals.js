@@ -10,9 +10,9 @@ const Hospitalschema = new Schema({
     },
     City: { type: String },
     Image: { type: String },
-    // StaffedBeds: { type: Number },
-    // TotalDischarges: { type: Number },
-    // PatientDays: { type: Number },
+    StaffedBeds: { type: String },
+    TotalDischarges: { type: String },
+    PatientDays: { type: String },
     Reviews: [{
         //Specify that the type of this is object ID and reference the model which it comes from
         type: Schema.Types.ObjectId,
