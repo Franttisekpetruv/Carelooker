@@ -27,7 +27,7 @@ const { hospitalSchema, reviewSchema } = require('./schemas.js');
 const show = require('./routes/hospitals');
 const User = require('./models/user')
 const userRouter = require('./routes/users')
-const isLoggedIn = require('./middleware')
+const { isLoggedIn } = require('./middleware')
 
 //! MONGOOSE CONNECTION
 //mognoose connection established
@@ -80,6 +80,7 @@ passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
 
 app.use((req, res, next) => {
+    res.locals.currentUser = req.user
     res.locals.success = req.flash('success')
     res.locals.error = req.flash('error')
     next();
@@ -101,6 +102,7 @@ app.get('/', (req, res) => {
 //In case this does not work log the error
 app.get('/hospitals', catchAsync(async(req, res, next) => {
     const hospitals = await hospitaldata2.find({})
+    console.log('loading');
     res.render('hospitals.ejs', { hospitals })
 }))
 

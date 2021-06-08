@@ -2,21 +2,32 @@
     <div>
         <ul class="navbar">
             <li>
-                <a href="/"><b>CareLooker</b></a>
+                <a class="logo" href="/"><b>CareLooker</b></a>
             </li>
             <li>
-                <div class="hamburger active"></div>
+                <div class="hamburger"></div>
+                <% if(currentUser){%>
+
+                    <a ref="/logout">Log out</a>
+                    <% }else{ %>
+                        <div class="navLinks active">
+                            <a href="/register">Register</a>
+                            <a href="/login">Log In</a>
+                        </div>
+                        <% } %>
+
+
             </li>
         </ul>
     </div>
-    <div class="mobileMenu">
-        <a id="login" href="/login">Log in</a>
-        <div class="profile">
+    <div class="mobileMenu ">
+        <a class="login " href="/login ">Log in</a>
+        <div class="profile ">
 
 
-            <div class="profile-picture"></div>
+            <div class="profile-picture "></div>
         </div>
         </ul>
     </div>
 </body>
-<script src="/js/navbar.js"></script>
+<script src="/js/navbar.js "></script>

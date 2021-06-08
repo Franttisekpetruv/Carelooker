@@ -12,12 +12,17 @@ const Hospitalschema = new Schema({
     Image: { type: String },
     StaffedBeds: { type: String },
     TotalDischarges: { type: String },
+    GrossPatientRevenue: { type: String },
     PatientDays: { type: String },
     Reviews: [{
         //Specify that the type of this is object ID and reference the model which it comes from
         type: Schema.Types.ObjectId,
         ref: 'Review'
-    }]
+    }],
+    Owner: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    }
 })
 Hospitalschema.post('findOneAndDelete', async function(doc) {
     if (doc) {

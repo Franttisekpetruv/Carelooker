@@ -11,7 +11,11 @@ const reviewSchema = new Schema({
     Rating: { type: Number },
     Body: { type: String },
     Tags: { type: String },
-    Date: { type: Number }
+    Date: { type: Number },
+    Owner: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    }
 
 })
 

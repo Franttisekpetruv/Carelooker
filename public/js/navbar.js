@@ -22,9 +22,9 @@ function menuActive() {
         mobileMenu.classList.add('active')
     }
 }
-window.addEventListener('resize', reportWindowSize)
+window.addEventListener('resize', mobileQuery)
 
-function reportWindowSize() {
+function mobileQuery() {
     console.log(window.screen.width);
     if (window.screen.width > 800) {
         hamburger.classList.remove('active')
