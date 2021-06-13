@@ -8,8 +8,22 @@ const Hospitalschema = new Schema({
     Name: {
         type: String
     },
+    geometry: {
+        type: {
+            type: String,
+            enum: ['Point'],
+            required: true
+        },
+        coordinates: {
+            type: [Number],
+            required: true
+        },
+    },
     City: { type: String },
-    Image: { type: String },
+    Image: [{
+        url: String,
+        filename: String
+    }],
     StaffedBeds: { type: String },
     TotalDischarges: { type: String },
     GrossPatientRevenue: { type: String },

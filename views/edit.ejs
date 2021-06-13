@@ -1,7 +1,7 @@
 <% layout('/layouts/bp') %>
-
+    <link rel="styl esheet" type="text/css" href="http://localhost:3003/css/home.css">
     <div class="container">
-        <form action="/show/<%=hospital._id%>?method=PUT" method="POST">
+        <form class="edit-form" action="/show/<%=hospital._id%>?method=PATCH" method="POST" enctype="multipart/form-data">
             <div>
                 <label for="Name">Name</label>
                 <input type="text" id="Name" name="hospital[Name]" value="<%=hospital.Name%> ">
@@ -11,16 +11,15 @@
                 <input type="text" id="City" name="hospital[City]" value='<%=hospital.City%>'>
             </div>
             <div>
-                <label for="StaffedBeds">Staffed Beds</label>
-                <input type="text" id="StaffedBeds" name="hospital[StaffedBeds]" value='<%=hospital.StaffedBeds%>'>
+                <input type="file" name="Image" id="" multiple>
             </div>
             <div>
-                <label for="Image">Image</label>
-                <input type="text" id="Image" name="hospital[Image]" value='<%=hospital.Image%>'>
-
-                <img class="Lthumbnail" src="<%= hospital.Image %>" alt="">
-
-
+                <% hospital.Image.forEach(function(img,i){ %>
+                    <img src=< %=img.url %> " alt="">
+                    <input type="checkbox" name="deleteImages[]" id="image -<%i%>" value="<%img.filename %> ">
+                    <label for="image -<%i%> ">Delete</label>
+                    <% }) %>
             </div>
             <button>submit</button>
         </form>
+    </div>

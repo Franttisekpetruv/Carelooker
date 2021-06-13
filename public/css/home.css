@@ -1,7 +1,7 @@
     body {
         margin: 0;
         font-family: 'Montserrat', sans-serif;
-        background-color: white;
+        background-color: #f7f9ff;
     }
     
     a {
@@ -85,6 +85,10 @@
         background-color: white;
     }
     
+    .title {
+        margin-top: 0;
+    }
+    
     .mobileMenu.active {
         z-index: 1;
         transition: all ease-in .3s;
@@ -100,34 +104,26 @@
     }
     
     h4 {
-        font-size: 20px;
+        margin-block: 0;
+        font-size: 15px;
         text-align: center;
+        margin-bottom: 15px;
         color: black;
     }
     
     .thumbnail {
-        object-fit: cover;
+        border-right: 1px solid black;
+        object-fit: contain;
         display: flex;
         position: relative;
         flex-basis: 33%;
-        border-radius: .3rem;
-        width: 20vw;
+        max-width: 10vw;
     }
     
     .card {
-        z-index: 0;
-        position: relative;
-        align-items: center;
-        flex-direction: column;
-        font-size: .6rem;
-        list-style: none;
-        display: block;
-        max-width: 80vw;
-        border-radius: .3rem;
-        padding: 10px;
-        margin-inline: auto;
-        width: 80%;
-        min-width: 300px;
+        display: flex;
+        margin-block: .4vh;
+        border: solid 1px black;
     }
     
     li {
@@ -139,13 +135,31 @@
         padding-top: 50px;
         display: flex;
         flex-direction: column;
+        max-width: 80%;
         justify-content: center;
-        margin-inline: auto;
     }
     
     #back {
         position: absolute;
         top: 0;
+    }
+    
+    #michigan-map {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 14%;
+        margin-left: 70%;
+        height: 800px;
+        width: 400px;
+    }
+    
+    #map {
+        height: 40vh;
+        width: 40vh;
+    }
+    
+    .edit-form {
+        margin-top: 400px;
     }
     
     .hero {
@@ -156,6 +170,7 @@
     }
     
     .container {
+        width: 100vw;
         flex-direction: column;
         display: flex;
         align-items: center;
@@ -168,14 +183,14 @@
     }
     
     .card-content {
-        background-color: rgb(247, 247, 247);
-        border-radius: 5px;
         display: flex;
         flex-direction: row;
+        height: inherit;
     }
     
     .card-text {
-        padding: 10px 5px;
+        padding-block: 1vh;
+        padding-left: 1vw;
         width: 100%;
         font-size: 1rem;
     }

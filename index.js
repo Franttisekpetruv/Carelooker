@@ -1,3 +1,8 @@
+if (process.env.NODE_ENV !== "production") {
+    require('dotenv').config()
+}
+
+
 //! NPM PACKAGES
 //require mongoose
 const mongoose = require('mongoose');
@@ -13,8 +18,13 @@ const flash = require('connect-flash')
 const ExpressError = require('./utilities/ExpressError')
 const passport = require('passport')
 const passportLocal = require('passport-local')
-    //! VARIABLES
-    //Get all variables and models for mongoose and express
+const multer = require('multer')
+const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding")
+const mbToken = process.env.MAPBOX_TOKEN
+const geocoder = mbxGeocoding({ accessToken: mbToken })
+
+//! VARIABLES
+//Get all variables and models for mongoose and express
 const Variables = require('./models/Variables')
 const hospitaldata2 = require('./models/hospitals')
 const methodOverride = require('method-override');
@@ -28,6 +38,7 @@ const show = require('./routes/hospitals');
 const User = require('./models/user')
 const userRouter = require('./routes/users')
 const { isLoggedIn } = require('./middleware')
+
 
 //! MONGOOSE CONNECTION
 //mognoose connection established
@@ -89,8 +100,8 @@ app.use((req, res, next) => {
 //Set the route for /show routes from refactoring
 app.use('/', userRouter)
 app.use('/show', show)
-    //! ROUTES
-    //Render the main page when accessing /
+
+//Render the main page when accessing /
 
 app.get('/', (req, res) => {
 
@@ -102,9 +113,11 @@ app.get('/', (req, res) => {
 //In case this does not work log the error
 app.get('/hospitals', catchAsync(async(req, res, next) => {
     const hospitals = await hospitaldata2.find({})
-    console.log('loading');
+
     res.render('hospitals.ejs', { hospitals })
+
 }))
+
 
 
 //Render the template

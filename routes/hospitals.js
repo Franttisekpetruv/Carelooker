@@ -9,18 +9,24 @@ const reviews = require('../controllers/reviews')
 const passport = require('passport')
 const users = require('../controllers/users')
 const passportLocal = require('passport-local')
+const multer = require('multer')
+const { storage } = require('../cloudinary')
+const upload = multer({ storage })
 
 //! BEWARE OF ERROR DUE TP CONTROLLERS
 router.route('/:id')
-    .get(catchAsync(hospitals.showHospitals))
-    .put(isLoggedIn, isAuthor, catchAsync(hospitals.updateHospital))
+    .get((hospitals.showHospitals))
+    .patch(upload.array('Image'), hospitals.updateHospital)
     .delete(isLoggedIn, isAuthor, catchAsync(hospitals.deleteHospital))
 
 
 
-router.post('/', isLoggedIn, catchAsync(hospitals.new))
-    //add validaterevie
-router.post('/:id/reviews', catchAsync(reviews.createReview))
+router.route('/')
+    .post(upload.array('Image'), (hospitals.new))
+
+
+//add validaterevie
+router.post('/:id/reviews', (reviews.createReview))
 router.delete('/:id/reviews/:reviewId', isLoggedIn, catchAsync(reviews.deleteReview))
 
 module.exports = router;

@@ -28,6 +28,7 @@ module.exports.authUser = async(req, res) => {
     req.flash('success', 'welcome back')
     const redirectUrl = req.session.returnTo || '/hospitals'
     delete req.session.returnTo
+    console.log(req.user._id);
     res.redirect(redirectUrl)
 
 }

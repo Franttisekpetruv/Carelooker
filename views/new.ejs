@@ -1,13 +1,12 @@
 <% layout('/layouts/bp') %>
 
-    <form action="/show" method="POST" novalidate class="validated-form">
+    <form action="/show" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
         <div class="new-form"></div>
         <label for="title" class="form-label">Name</label>
         <input type="text" class="form-control" name="hospital[Name]" required>
         <label for="location" class="form-label">Location</label>
         <input type="text" class="form-control" name="hospital[City]" required>
-        <label for="Image" class="form-label">Image link</label>
-        <input type="text" class="form-control" name="hospital[Image]" required>
+        <input type="file" name="Image" id="" multiple>
         <button type="submit" class="btn btn-primary">Submit</button>
 
 
