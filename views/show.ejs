@@ -18,28 +18,33 @@
             <div class="hero-right">
                 <ul class="features">
                     <li>
-                        Staffed Beds:
-                        <%= hospital.StaffedBeds%>
+                        <img class="detail-image" src="/img/bed.png" alt="">
+                        <div id="feature-text">
+                            <%= hospital.StaffedBeds%>
+                        </div>
                     </li>
                     <li>
-                        Total Discharges:
-                        <%= hospital.TotalDischarges%>
+                        <img class="detail-image" src="/img/bed.png" alt="">
+                        <div id="feature-text">
+                            <%= hospital.TotalDischarges%>
+                        </div>
                     </li>
 
                     <li>
-                        Revenue:
-                        <%= hospital.GrossPatientRevenue%>
+                        <img class="detail-image" src="/img/dollar.png" alt="">
+                        <div id="feature-text">
+                            <%= hospital.GrossPatientRevenue%>
+                        </div>
                     </li>
                 </ul>
 
 
                 <% if(currentUser && (currentUser._id ==currentUser._id)){ %>
                     <a href="/edit/<%=hospital._id%>">edit</a>
+
                     <% } %>
 
-                        <h2>Total of
-                            <%=hospital.Reviews.length %> Reviews
-                        </h2>
+
 
                         <form action="/show/<%=hospital._id%>/reviews" method="POST">
                             <% if(currentUser){ %>
@@ -71,23 +76,26 @@
                         </form>
 
                         <% } %>
+                            <h2>Total of
+                                <%=hospital.Reviews.length %> Reviews
+                            </h2>
                             <div class="show-reviews">
+
                                 <% for(let review of hospital.Reviews) { %>
                                     <div class="review">
-                                        <h2>
 
-                                            <h3>
-                                                <%=review.Title%>
-                                            </h3>
-                                            <p class="starability-result" data-rating="<%=review.Rating%>">
-                                                <%=review.Body%>
-                                            </p>
-                                            <%=review.Tags%>
-                                        </h2>
-                                        <form action="/show/<%=hospital._id%>/reviews/<%=review._id%>?method=DELETE" method="POST">
-                                            <%if(currentUser &&(currentUser._id == currentUser._id)) {%>
-                                                <button>Delete</button>
-                                                <%} %>
+                                        <h3>
+                                            <%=review.Title%>
+                                        </h3>
+                                        <p class="starability-result" data-rating="<%=review.Rating%>">
+                                            <%=review.Body%>
+                                        </p>
+                                        <%=review.Tags%>
+
+                                            <form action="/show/<%=hospital._id%>/reviews/<%=review._id%>?method=DELETE" method="POST">
+                                                <%if(currentUser &&(currentUser._id == currentUser._id)) {%>
+                                                    <button>Delete</button>
+                                                    <%} %>
                                     </div>
                                     <%} %>
                             </div>
