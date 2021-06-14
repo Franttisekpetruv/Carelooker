@@ -2,51 +2,58 @@
 
     <div class="container">
 
+
         <div id='michigan-map'></div>
 
-
-
         <ul class="hospital-list">
-            <h1>The Hospitals of Michigan</h1>
+            <h1>Found
+                <%=hospitals.length %> hospitals in Michigan
+            </h1>
             <% for(let hospital of hospitals) { %>
-                <li class="card">
-                    <% for(img of hospital.Image) {%>
-                        <img class="thumbnail" src="<%=img.url%> " alt="">
-                        <% } %>
+                <% for(img of hospital.Image) {%>
+
+
+                    <% } %>
+                        <li class="card" style="background-image: url( ' <%=img.url%> ')">
                             <div class="card-content">
+                                <div class="card-top">
+                                    <div id="speciality">Speciality</div>
+                                    <div id="rating">4/5</div>
 
-                                </a>
+                                </div>
                                 <ul class="card-text">
+                                    <a class="title" href="/show/<%=hospital._id%>">
+                                        <%= hospital.Name %>
+                                    </a>
 
-                                    <h4>
-                                        <a class="title" href="/show/<%=hospital._id%>">
-                                            <%= hospital.Name %>
-                                        </a>
-                                    </h4>
-                                    <div class="card-details">
-                                        <li>
-                                            Location:
+                                    <ul class="details">
+                                        <li class="detail">
+                                            <img class="detail-image" src="img/pin.png" alt="">
                                             <%= hospital.City %>
                                         </li>
-                                        <li> Staffed Beds:
+                                        <li class="detail"> <img class="detail-image" src="img/bed.png" alt="">
                                             <%= hospital.StaffedBeds %>
                                         </li>
-                                    </div>
+                                        <li class="detail"> <img class="detail-image" src="img/dollar.png" alt="">
+                                            <%= hospital.GrossPatientRevenue %>
+                                        </li>
+                                    </ul>
+
                                 </ul>
 
-                </li>
+                        </li>
 
 
-                <%} %>
+                        <%} %>
         </ul>
+
+
+
         </div>
-    </div>
+        <script>
+            const hospitals =
+                <%-JSON.stringify(hospitals) %>
+        </script>
 
-    </div>
-    <script>
-        const hospitals =
-            <%-JSON.stringify(hospitals) %>
-    </script>
-
-    <script src="/js/michiganMap.js"></script>
+        <script src="/js/michiganMap.js"></script>
     </div>

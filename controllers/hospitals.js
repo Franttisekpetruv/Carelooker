@@ -1,5 +1,5 @@
 const hospitaldata2 = require('../models/hospitals')
-const cloudinary = require('../cloudinary')
+const { cloudinary } = require('../cloudinary')
 const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding")
 const mbToken = process.env.MAPBOX_TOKEN
 const geocoder = mbxGeocoding({ accessToken: mbToken })
@@ -22,6 +22,7 @@ module.exports.new = async(req, res, next) => {
 }
 module.exports.updateHospital = async(req, res) => {
     const { id } = req.params;
+    console.log(req.body);
     const hospital = await hospitaldata2.findByIdAndUpdate(id, {...req.body.hospital })
     const images = req.files.map(f => ({ url: f.path, filename: f.filename }))
     hospital.Image.push(...images)
@@ -30,9 +31,9 @@ module.exports.updateHospital = async(req, res) => {
         for (let filename of req.body.deleteImages) {
             await cloudinary.uploader.destroy(filename)
         }
-        await hospital.updateOne({ $pull: { image: { filename: { $in: req.body.deleteImages } } } })
+        await hospital.updateOne({ $pull: { Image: { filename: { $in: req.body.deleteImages } } } })
     }
-    console.log(hospital);
+
     res.redirect(`/show/${hospital._id}`)
 }
 module.exports.deleteHospital = async(req, res) => {
@@ -54,13 +55,13 @@ module.exports.showHospitals = async(req, res) => {
         limit: 1
     }).send()
     hospital.geometry = geodata.body.features[0].geometry
-    console.log(geodata);
+
 
     if (!hospital) {
         req.flash('error', 'Hospital does not exists')
         return res.redirect('/hospitals')
 
     }
-    console.log(hospital);
+
     res.render('show.ejs', { hospital });
 }

@@ -4,6 +4,29 @@
         background-color: #f7f9ff;
     }
     
+    li {
+        list-style: none;
+        font-size: .6em;
+    }
+    
+    .card-top {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        font-size: 1rem;
+        justify-content: space-between;
+        align-items: center;
+        margin-inline: auto;
+        color: white;
+    }
+    
+    #speciality {
+        color: rgb(0, 83, 238);
+        background-color: white;
+        border-radius: .3em;
+        padding: .2em .3em;
+    }
+    
     a {
         text-decoration: none;
         text-transform: uppercase;
@@ -42,9 +65,29 @@
         background-color: rgba(0, 0, 0, 0.3);
     }
     
+    .detail {
+        font-size: .8em;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .details {
+        padding-top: 1em;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    
+    .detail-image {
+        height: 25px;
+        margin-bottom: .1em;
+        width: auto;
+    }
+    
     .navbar.active {
         z-index: 1;
-        background-color: rgba(27, 22, 131);
+        background-color: rgba(65, 109, 255);
     }
     
     .hamburger.active {
@@ -121,41 +164,83 @@
     }
     
     .card {
+        box-shadow: 0em 0em .6em 0.5em rgba(0, 0, 0, 0.055);
+        background-position: center bottom;
+        background-size: cover;
+        background-repeat: no-repeat;
+        position: relative;
         display: flex;
-        margin-block: .4vh;
-        border: solid 1px black;
+        justify-content: space-evenly;
+        flex-direction: column;
+        margin-block: 2vh;
+        margin-inline: 1.5em;
+        width: 17vw;
+        height: 40vh;
+        border-radius: 1.2em;
     }
     
-    li {
-        list-style: none;
+    h2 {
+        width: inherit;
+        margin-inline: auto;
+    }
+    
+    .show-reviews {
+        display: flex;
+        justify-content: space-around;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    
+    .review {
+        border-bottom: black solid 1px;
+        height: fit-content;
+        flex-basis: 40%;
+    }
+    
+    #map {
+        position: relative;
+        left: 0;
+        height: 100vh;
+        width: 40vw;
+        top: 0;
+    }
+    
+    #rating {
+        font-size: 1.2em;
+        background-color: rgb(65, 109, 255);
+        border-radius: .2em;
+        padding: 0.1em 0.3em;
+    }
+    
+    #michigan-map {
+        right: 0;
+        position: fixed;
+        height: 100vh;
+        width: 45vw;
     }
     
     .hospital-list {
-        z-index: 0;
-        padding-top: 50px;
+        position: absolute;
+        box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 50px 10px;
         display: flex;
-        flex-direction: column;
-        max-width: 80%;
-        justify-content: center;
+        padding-top: 10vh;
+        flex-direction: row;
+        width: 54vw;
+        flex-wrap: wrap;
+        background-color: white;
+        justify-content: space-evenly;
+    }
+    
+    h1 {
+        font-family: sans-serif;
+        margin-left: 5vw;
+        width: 100%;
+        display: block;
     }
     
     #back {
         position: absolute;
         top: 0;
-    }
-    
-    #michigan-map {
-        position: -webkit-sticky;
-        position: sticky;
-        top: 14%;
-        margin-left: 70%;
-        height: 800px;
-        width: 400px;
-    }
-    
-    #map {
-        height: 40vh;
-        width: 40vh;
     }
     
     .edit-form {
@@ -164,17 +249,14 @@
     
     .hero {
         display: flex;
-        flex-direction: column;
-        align-content: center;
-        justify-content: center;
+        flex-direction: row;
+        justify-items: flex-start;
+        align-items: flex-start;
     }
     
     .container {
-        width: 100vw;
+        margin-inline: auto;
         flex-direction: column;
-        display: flex;
-        align-items: center;
-        justify-content: center;
     }
     
     ul {
@@ -184,14 +266,21 @@
     
     .card-content {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
+        height: 100%;
+        margin: 1em;
+        align-items: center;
         height: inherit;
     }
     
     .card-text {
-        padding-block: 1vh;
-        padding-left: 1vw;
-        width: 100%;
+        border-radius: .3em;
+        margin-top: auto;
+        margin-bottom: .5em;
+        height: fit-content;
+        padding: 1em;
+        background-color: white;
+        width: 80%;
         font-size: 1rem;
     }
     
@@ -208,10 +297,26 @@
     }
     
     .features {
-        margin-top: 2em;
+        color: white;
+        padding: 2em;
+        position: static;
+        height: 20vh;
+        width: 100%;
+        background-color: rgb(207, 207, 207);
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: space-evenly;
+    }
+    
+    .hero-right {
+        height: 100vh;
+        position: relative;
+        box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 50px 10px;
+        display: flex;
+        margin-left: auto;
+        flex-direction: column;
+        align-items: flex-start;
+        left: 0;
     }
     
     .banner {
@@ -247,13 +352,6 @@
         text-align: center;
         min-width: 300px;
         display: flex;
-    }
-    
-    .review {
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        margin: .5em;
     }
     
     #submit {

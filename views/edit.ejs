@@ -15,9 +15,9 @@
             </div>
             <div>
                 <% hospital.Image.forEach(function(img,i){ %>
-                    <img src=< %=img.url %> " alt="">
-                    <input type="checkbox" name="deleteImages[]" id="image -<%i%>" value="<%img.filename %> ">
-                    <label for="image -<%i%> ">Delete</label>
+                    <img src=<%=img.url%> " alt="">
+                    <input type="checkbox" name="deleteImages[]" id="image-<%=i%>" value="<%=img.filename%>">
+                    <label for="image-<%=i%> ">Delete</label>
                     <% }) %>
             </div>
             <button>submit</button>
