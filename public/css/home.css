@@ -1,387 +1,498 @@
-    body {
-        margin: 0;
-        font-family: 'Montserrat', sans-serif;
-        background-color: #f7f9ff;
-    }
-    
-    li {
-        list-style: none;
-        display: flex;
-        align-items: center;
-        font-size: .6em;
-    }
-    
-    .card-top {
-        display: flex;
-        flex-direction: row;
-        width: 100%;
-        font-size: 1rem;
-        justify-content: space-between;
-        align-items: center;
-        margin-inline: auto;
-        color: white;
-    }
-    
-    #speciality {
-        color: rgb(0, 83, 238);
-        background-color: white;
-        border-radius: .3em;
-        padding: .2em .3em;
-    }
-    
-    a {
-        text-decoration: none;
-        text-transform: uppercase;
-        color: inherit;
-        font-family: 'Montserrat', sans-serif;
-    }
-    
-    .sing-in-info {
-        margin-top: 50%;
-        display: grid;
-        flex-direction: row;
-        color: black;
-        width: 300px;
-        padding: 40px;
-        height: 200px;
-        background-color: white;
-        box-shadow: 0px 0px 3px 1px lightgrey;
-        border-radius: 1rem;
-    }
-    
-    #form-label {
-        margin-top: 30px;
-        margin-bottom: 6px;
-    }
-    
-    .navbar {
-        z-index: 1;
-        display: flex;
-        color: white;
-        width: 100vw;
-        height: 4rem;
-        font-size: 2em;
-        justify-content: space-between;
-        align-items: center;
-        position: fixed;
-        background-color: rgba(0, 0, 0, 0.3);
-    }
-    
-    .detail {
-        font-size: .8em;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .details {
-        padding-top: 1em;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-    }
-    
-    .detail-image {
-        height: 25px;
-        margin-bottom: .1em;
-        width: auto;
-    }
-    
-    .navbar.active {
-        z-index: 1;
-        background-color: rgba(65, 109, 255);
-    }
-    
-    .hamburger.active {
-        height: 2rem;
-        width: 2rem;
-        background-color: white;
-        border-radius: .5rem;
-        cursor: pointer;
-        box-shadow: inset 0em 0em 0.1em 0.06em lightgray;
-    }
-    
-    .navLinks.inactive {
-        display: none;
-    }
-    
-    .navLinks {
-        font-size: 1rem;
-        margin-right: 10px;
-    }
-    
-    .navLinks a {
-        margin-inline: 10px;
-    }
-    
-    .logo {
-        padding-left: 10px;
-    }
-    
-    .mobileMenu {
-        z-index: 1;
-        transition: all ease-in .3s;
-        align-content: space-between;
-        bottom: 0px;
-        right: 0;
-        position: fixed;
-        height: 100vh;
-        width: 0vw;
-        background-color: white;
-    }
-    
-    .title {
-        margin-top: 0;
-    }
-    
-    .mobileMenu.active {
-        z-index: 1;
-        transition: all ease-in .3s;
-        width: 80vw;
-    }
-    
-    .navbar li {
-        padding: .3em;
-    }
-    
-    #item {
-        margin: .23rem;
-    }
-    
-    h4 {
-        margin-block: 0;
-        font-size: 15px;
-        text-align: center;
-        margin-bottom: 15px;
-        color: black;
-    }
-    
-    .thumbnail {
-        border-right: 1px solid black;
-        object-fit: contain;
-        display: flex;
-        position: relative;
-        flex-basis: 33%;
-        max-width: 10vw;
-    }
-    
-    .card {
-        box-shadow: 0em 0em .6em 0.5em rgba(0, 0, 0, 0.055);
-        background-position: center bottom;
-        background-size: cover;
-        background-repeat: no-repeat;
-        position: relative;
-        display: flex;
-        justify-content: space-evenly;
-        flex-direction: column;
-        margin-block: 2vh;
-        margin-inline: 1.5em;
-        width: 17vw;
-        height: 40vh;
-        border-radius: 1.2em;
-    }
-    
-    h2 {
-        text-align: center;
-        width: auto;
-        border: red 1px solid;
-    }
-    
-    .show-reviews {
-        display: flex;
-        justify-content: space-around;
-        flex-direction: row;
-        flex-wrap: wrap;
-    }
-    
-    .review {
-        border-bottom: black solid 1px;
-        height: fit-content;
-        flex-basis: 40%;
-    }
-    
-    #map {
-        position: relative;
-        left: 0;
-        height: 100vh;
-        width: 40vw;
-        top: 0;
-    }
-    
-    #rating {
-        font-size: 1.2em;
-        background-color: rgb(65, 109, 255);
-        border-radius: .2em;
-        padding: 0.1em 0.3em;
-    }
-    
-    #michigan-map {
-        right: 0;
-        position: fixed;
-        height: 100vh;
-        width: 45vw;
-    }
-    
-    .hospital-list {
-        position: absolute;
-        box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 50px 10px;
-        display: flex;
-        padding-top: 10vh;
-        flex-direction: row;
-        width: 54vw;
-        flex-wrap: wrap;
-        background-color: white;
-        justify-content: space-evenly;
-    }
-    
-    h1 {
-        font-family: sans-serif;
-        margin-left: 5vw;
-        width: 100%;
-        display: block;
-    }
-    
-    #back {
-        position: absolute;
-        top: 0;
-    }
-    
-    .edit-form {
-        margin-top: 400px;
-    }
-    
-    .hero {
-        display: flex;
-        flex-direction: row;
-        justify-items: flex-start;
-        align-items: flex-start;
-    }
-    
-    .container {
-        margin-inline: auto;
-        flex-direction: column;
-    }
-    
-    ul {
-        padding: 0;
-        margin: 0px;
-    }
-    
-    .card-content {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-        margin: 1em;
-        align-items: center;
-        height: inherit;
-    }
-    
-    .card-text {
-        border-radius: .3em;
-        margin-top: auto;
-        margin-bottom: .5em;
-        height: fit-content;
-        padding: 1em;
-        background-color: white;
-        width: 80%;
-        font-size: 1rem;
-    }
-    
-    .new-form {
-        margin-top: 50%;
-    }
-    
-    #feature-text {
-        margin-left: 1em;
-    }
-    
-    #bannerimg {
-        object-fit: cover;
-        width: 100vw;
-        height: 40vh;
-        text-align: center;
-        opacity: 60%;
-    }
-    
-    .features {
-        box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 50px 10px;
-        color: black;
-        padding: 2em;
-        position: static;
-        height: 20vh;
-        font-size: 2em;
-        width: 100%;
-        background-color: rgb(255, 255, 255);
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-    }
-    
-    .hero-right {
-        height: 100vh;
-        width: 100%;
-        position: relative;
-        box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 50px 10px;
-        display: flex;
-        margin-left: auto;
-        flex-direction: column;
-        align-items: flex-start;
-        left: 0;
-    }
-    
-    .banner {
-        z-index: -1;
-        background-color: black;
-        display: grid;
-        align-items: center;
-        justify-items: center;
-    }
-    
-    .warning {
-        width: 80px;
-        height: 30px;
-        text-align: center;
-        margin: 10px;
-        font-family: 'Montserrat', sans-serif;
-        border: none;
-        padding: .5em 1em;
-        background-color: rgb(208, 0, 0);
-        color: white;
-        border-radius: 20px;
-    }
-    
-    .warning:hover {
-        background-color: lightcoral;
-    }
-    
-    #hsTitle {
-        color: white;
-        font-size: 2.5rem;
-        position: absolute;
-        text-align: center;
-        margin-top: 7%;
-        justify-content: center;
-        display: flex;
-        min-width: 300px;
-        margin-inline: auto;
-        width: 100vw;
-    }
-    
-    #submit {
-        transition: .5s;
-        border: none;
-        width: 80px;
-        height: 30px;
-        padding: .3em .8em;
-        margin-top: 2em;
-        background-color: forestgreen;
-        color: white;
-        border-radius: 50px;
-    }
-    
-    #submit:hover {
-        transition: .5s;
-        background-color: lightgreen;
-        color: white;
-        border-radius: 50px;
-    }
+body {
+    height: 100vh;
+    margin: 0;
+    font-family: "Montserrat", sans-serif;
+    background-color: #f7f9ff;
+    overflow-x: hidden;
+}
+
+li {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    font-size: 0.6em;
+}
+
+.card-top {
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    padding-inline: 0.5em;
+    font-size: 1rem;
+    justify-content: space-between;
+    align-items: center;
+    margin-inline: auto;
+    color: white;
+}
+
+#speciality {
+    color: rgb(0, 83, 238);
+    background-color: white;
+    border-radius: 0.3em;
+    padding: 0.2em 0.3em;
+}
+
+.alert span {
+    border-radius: 20px;
+    background-color: white;
+    padding: 10px;
+}
+
+.alert {
+    display: block;
+    text-align: center;
+    position: fixed;
+    top: 3em;
+    margin-inline: auto;
+    z-index: 3;
+    width: 100%;
+    font-size: 30px;
+    padding: 0.5em, 0.6em;
+}
+
+a {
+    text-decoration: none;
+    text-transform: uppercase;
+    color: inherit;
+    font-family: "Montserrat", sans-serif;
+}
+
+.sign-in-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0;
+    height: 100vh;
+    background-color: rgb(0, 83, 238);
+}
+
+.sign-in-info {
+    display: grid;
+    flex-direction: row;
+    color: black;
+    position: relative;
+    width: 300px;
+    padding: 40px;
+    height: 200px;
+    background-color: white;
+    box-shadow: 0px 0px 3px 1px lightgrey;
+    border-radius: 1rem;
+}
+
+#form-label {
+    margin-top: 30px;
+    margin-bottom: 6px;
+}
+
+.navbar {
+    z-index: 1;
+    display: flex;
+    color: white;
+    width: 100vw;
+    height: 4rem;
+    font-size: 2em;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.details {
+    padding-top: 1em;
+    display: flex;
+    flex-direction: row;
+    flex-basis: 20%;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.detail {
+    display: flex;
+    font-size: 0.8em;
+    flex-direction: column;
+    text-align: center;
+    flex-wrap: wrap;
+    width: 80px;
+}
+
+.detail-image {
+    height: 20px;
+    margin-right: 0.4em;
+    padding-block: 0.2em;
+    margin-bottom: 0.1em;
+    width: auto;
+}
+
+.navbar.active {
+    z-index: 3;
+    background-color: rgba(65, 109, 255);
+}
+
+.hamburger {
+    z-index: 2;
+}
+
+.hamburger.active {
+    z-index: 2;
+    width: 2rem;
+    background-color: white;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    box-shadow: inset 0em 0em 0.1em 0.06em lightgray;
+}
+
+.navLinks.inactive {
+    display: none;
+}
+
+.navLinks {
+    font-size: 1rem;
+    margin-right: 10px;
+}
+
+.navLinks a {
+    margin-inline: 10px;
+}
+
+.logo {
+    padding-left: 10px;
+}
+
+.mobileMenu {
+    z-index: 1;
+    transition: all ease-in 0.3s;
+    align-content: space-between;
+    bottom: 0px;
+    right: 0;
+    position: fixed;
+    height: 100vh;
+    width: 0vw;
+    background-color: white;
+}
+
+.title {
+    margin-top: 0;
+}
+
+.mobileMenu.active {
+    z-index: 1;
+    transition: all ease-in 0.3s;
+    width: 80vw;
+}
+
+.navbar li {
+    padding: 0.3em;
+}
+
+#item {
+    margin: 0.23rem;
+}
+
+h4 {
+    margin-block: 0;
+    font-size: 15px;
+    text-align: center;
+    margin-bottom: 15px;
+    color: black;
+}
+
+.thumbnail {
+    border-right: 1px solid black;
+    display: flex;
+    position: relative;
+    overflow-x: hidden;
+    flex-basis: 33%;
+    max-width: 10vw;
+}
+
+.card {
+    box-shadow: 0em 0em 0.6em 0.5em rgba(0, 0, 0, 0.055);
+    background-position: center bottom;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    display: flex;
+    padding: 1em;
+    justify-content: space-evenly;
+    flex-direction: column;
+    margin-block: 2vh;
+    margin-inline: 1.5em;
+    width: 17vw;
+    height: 40vh;
+    border-radius: 1.2em;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+    height: inherit;
+}
+
+.card-text {
+    border-radius: 0.3em;
+    margin-top: auto;
+    height: fit-content;
+    padding: 1em;
+    background-color: rgba(255, 255, 255, 0.67);
+    width: 80%;
+    font-size: 1rem;
+}
+
+h2 {
+    text-align: center;
+}
+
+.hero h2 {
+    border-top: black solid 3px;
+    padding-top: 1em;
+    text-align: center;
+    width: inherit;
+    margin-inline: auto;
+}
+
+.show-reviews {
+    display: relative;
+    flex-direction: row;
+}
+
+textarea {}
+
+.review {
+    padding-left: 3em;
+    margin-inline: auto;
+    height: fit-content;
+    flex-basis: 40%;
+    color: black;
+}
+
+.slide {
+    color: red;
+    position: relative;
+    margin-top: 30px;
+    width: 100%;
+    text-align: left;
+    box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.05);
+}
+
+#review-title {
+    color: black;
+    font: 20px;
+}
+
+.reviews {
+    display: flex;
+    justify-content: center;
+}
+
+.review-cards {
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-basis: 60%;
+}
+
+.showing {
+    opacity: 1;
+    z-index: 2;
+}
+
+.slide-text {
+    background-color: white;
+    border-radius: 10px;
+    text-align: center;
+    padding-left: 60px;
+    padding-block: 2em;
+    position: relative;
+}
+
+.button-left {
+    position: absolute;
+    left: -10px;
+}
+
+.button-right {
+    position: absolute;
+    right: -10px;
+}
+
+button {
+    margin-block: auto;
+    margin-bottom: 20px;
+}
+
+#map {
+    position: relative;
+    left: 0;
+    height: 50vh;
+    width: 40vw;
+    top: 0;
+}
+
+#rating {
+    font-size: 1.2em;
+    background-color: rgb(65, 109, 255);
+    border-radius: 0.2em;
+    padding: 0.1em 0.3em;
+}
+
+#michigan-map {
+    right: 0;
+    position: fixed;
+    height: 100vh;
+    width: 45vw;
+}
+
+.hospital-list {
+    position: absolute;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 50px 10px;
+    display: flex;
+    padding-top: 10vh;
+    flex-direction: row;
+    width: 55vw;
+    flex-wrap: wrap;
+    background-color: white;
+    justify-content: space-evenly;
+}
+
+h1 {
+    font-family: sans-serif;
+    margin-left: 5vw;
+    width: 100%;
+    display: block;
+}
+
+#back {
+    position: absolute;
+    top: 0;
+}
+
+.edit-form {
+    margin-top: 400px;
+}
+
+.hero {
+    width: 100%;
+    border-bottom: black solid 3px;
+    display: flex;
+    flex-direction: row;
+    justify-items: flex-start;
+    align-items: flex-start;
+}
+
+.container {
+    margin-bottom: 0;
+    margin-inline: auto;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    flex-direction: column;
+}
+
+ul {
+    padding: 0;
+    margin: 0px;
+}
+
+.new-form {
+    margin-top: 50%;
+}
+
+#feature-text {
+    margin-left: 1em;
+}
+
+#bannerimg {
+    object-fit: cover;
+    width: 100vw;
+    height: 40vh;
+    text-align: center;
+    opacity: 60%;
+}
+
+.features {
+    color: black;
+    padding: 2em;
+    height: 20vh;
+    font-size: 2em;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.features li {
+    width: fit-content;
+    margin-top: 1em;
+    margin-left: 2em;
+    border-bottom: black solid 2px;
+}
+
+.hero-right {
+    height: 50vh;
+    width: 60vw;
+    position: static;
+    display: flex;
+    margin-left: auto;
+    flex-direction: column;
+    align-items: flex-start;
+    left: 0;
+}
+
+.banner {
+    z-index: -1;
+    display: grid;
+    align-items: center;
+}
+
+.warning {
+    width: 80px;
+    height: 30px;
+    text-align: center;
+    margin: 10px;
+    font-family: "Montserrat", sans-serif;
+    border: none;
+    padding: 0.5em 1em;
+    background-color: rgb(208, 0, 0);
+    color: white;
+    border-radius: 20px;
+}
+
+.warning:hover {
+    background-color: lightcoral;
+}
+
+#hsTitle {
+    color: black;
+    font-size: 2.5rem;
+    position: absolute;
+    text-align: center;
+    margin-top: 2.5em;
+    justify-content: center;
+    display: flex;
+    min-width: 300px;
+    margin-inline: auto;
+    width: 100vw;
+}
+
+#submit {
+    transition: 0.5s;
+    border: none;
+    width: 80px;
+    height: 30px;
+    padding: 0.3em 0.8em;
+    margin-top: 2em;
+    background-color: forestgreen;
+    color: white;
+    border-radius: 50px;
+}
+
+#submit:hover {
+    transition: 0.5s;
+    background-color: lightgreen;
+    color: white;
+    border-radius: 50px;
+}

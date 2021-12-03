@@ -1,11 +1,11 @@
 <% layout('/layouts/bp') %>
 
     <div class="container">
-        <link rel="stylesheet" type="text/css" href="/css/home.css">
-        <link rel="stylesheet" type="text/css" href="/css/stars.css">
+        <link rel="stylesheet" type="text/css" href="/css/home.css" />
+        <link rel="stylesheet" type="text/css" href="/css/stars.css" />
         <div class="banner">
             <% for(img of hospital.Image) {%>
-                <img id="bannerimg" src="<%=img.url%> " alt="">
+                <img id="bannerimg" src="<%=img.url%> " alt="" />
                 <% } %>
 
                     <h2 id="hsTitle">
@@ -14,99 +14,109 @@
         </div>
 
         <div class="hero">
-            <div id='map'></div>
+            <div id="map"></div>
             <div class="hero-right">
                 <ul class="features">
                     <li>
-                        <img class="detail-image" src="/img/bed.png" alt="">
-                        <div id="feature-text">
+                        <img class="detail-image" src="/img/bed.png" alt="" />
+                        <div id="feature-text">Staffed beds:
                             <%= hospital.StaffedBeds%>
                         </div>
                     </li>
                     <li>
-                        <img class="detail-image" src="/img/bed.png" alt="">
+                        <img class="detail-image" src="/img/pin.png" alt="" />
+                        <div id="feature-text">Location:
+                            <%= hospital.City%>,MI</div>
+                    </li>
+
+                    <li>
+                        <img class="detail-image" src="/img/dollar.png" alt="" />
                         <div id="feature-text">
-                            <%= hospital.TotalDischarges%>
+                            Gross patient revenues:
+                            <%= hospital.GrossPatientRevenue%>
                         </div>
                     </li>
 
                     <li>
-                        <img class="detail-image" src="/img/dollar.png" alt="">
+                        <img class="detail-image" src="/img/discharge.png" alt="" />
                         <div id="feature-text">
-                            <%= hospital.GrossPatientRevenue%>
+                            Total Discharges:
+                            <%= hospital.TotalDischarges%>
                         </div>
                     </li>
                 </ul>
+            </div>
+        </div>
+        <h2>Total of
+            <%=hospital.Reviews.length %> Reviews</h2>
+    </div>
+    <div class="reviews">
+        <% if(hospital.Reviews.length <0) { %>
+            <%} %>
+                <div class="review-cards">
+                    <% for(let review of hospital.Reviews) { %>
+                        <div class="slide">
+                            <div class="slide-text">
+                                <div id="review-title">
+                                    <%=review.Title%>
+                                </div>
+                                <%=review.Tags%>
+                                    <p class="starability-result" data-rating="<%=review.Rating%>"></p>
+                                    <form action="/show/<%=hospital._id%>/reviews/<%=review._id%>?method=DELETE" method="POST">
+                                        <%if(currentUser &&(currentUser._id == currentUser._id)) {%>
+                                            <button>Delete</button>
+                                            <%} %>
+                            </div>
+                        </div>
 
-
-                <% if(currentUser && (currentUser._id ==currentUser._id)){ %>
+                        <%} %>
+                </div>
+                <!-- <% if(currentUser && (currentUser._id ==currentUser._id)){ %>
                     <a href="/edit/<%=hospital._id%>">edit</a>
 
-                    <% } %>
+                    <% } %> -->
 
+                <form action="/show/<%=hospital._id%>/reviews" method="POST">
+                    <% if(currentUser){ %>
+                        <div class="review">
+                            <h3>Write A Review</h3>
+                            <fieldset class="starability-basic">
+                                <legend>First rating:</legend>
+                                <input type="radio" id="no-rate" class="input-no-rate" name="Review[Rating]" value="0" checked aria-label="No rating." />
+                                <input type="radio" id="first-rate1" name="Review[Rating]" value="1" />
+                                <label for="first-rate1" title="Terrible">1 star</label>
+                                <input type="radio" id="first-rate2" name="Review[Rating]" value="2" />
+                                <label for="first-rate2" title="Not good">2 stars</label>
+                                <input type="radio" id="first-rate3" name="Review[Rating]" value="3" />
+                                <label for="first-rate3" title="Average">3 stars</label>
+                                <input type="radio" id="first-rate4" name="Review[Rating]" value="4" />
+                                <label for="first-rate4" title="Very good">4 stars</label>
+                                <input type="radio" id="first-rate5" name="Review[Rating]" value="5" />
+                                <label for="first-rate5" title="Amazing">5 stars</label>
+                            </fieldset>
 
-
-                        <form action="/show/<%=hospital._id%>/reviews" method="POST">
-                            <% if(currentUser){ %>
-                                <div class="review">
-                                    <h3>Review</h3>
-                                    <fieldset class="starability-basic">
-                                        <legend>First rating:</legend>
-                                        <input type="radio" id="no-rate" class="input-no-rate" name="Review[Rating]" value="0" checked aria-label="No rating." />
-                                        <input type="radio" id="first-rate1" name="Review[Rating]" value="1" />
-                                        <label for="first-rate1" title="Terrible">1 star</label>
-                                        <input type="radio" id="first-rate2" name="Review[Rating]" value="2" />
-                                        <label for="first-rate2" title="Not good">2 stars</label>
-                                        <input type="radio" id="first-rate3" name="Review[Rating]" value="3" />
-                                        <label for="first-rate3" title="Average">3 stars</label>
-                                        <input type="radio" id="first-rate4" name="Review[Rating]" value="4" />
-                                        <label for="first-rate4" title="Very good">4 stars</label>
-                                        <input type="radio" id="first-rate5" name="Review[Rating]" value="5" />
-                                        <label for="first-rate5" title="Amazing">5 stars</label>
-                                    </fieldset>
-
-                                    <label for="Title">Title</label>
-                                    <textarea name="Review[Title]" id="Title" cols="30" rows="1"></textarea>
-                                    <label for="Body">Body</label>
-                                    <textarea name="Review[Body]" id="Body" cols="30" rows="4"></textarea>
-                                    <label for="Tags">Tags</label>
-                                    <textarea name="Review[Tags]" id="Body" cols="30" rows="1"></textarea>
-                                </div>
-                                <button id="submit" type="submit">Submit</button>
-                        </form>
-
-                        <% } %>
-                            <h2>Total of
-                                <%=hospital.Reviews.length %> Reviews
-                            </h2>
-                            <div class="show-reviews">
-
-                                <% for(let review of hospital.Reviews) { %>
-                                    <div class="review">
-
-                                        <h3>
-                                            <%=review.Title%>
-                                        </h3>
-                                        <p class="starability-result" data-rating="<%=review.Rating%>">
-                                            <%=review.Body%>
-                                        </p>
-                                        <%=review.Tags%>
-
-                                            <form action="/show/<%=hospital._id%>/reviews/<%=review._id%>?method=DELETE" method="POST">
-                                                <%if(currentUser &&(currentUser._id == currentUser._id)) {%>
-                                                    <button>Delete</button>
-                                                    <%} %>
-                                    </div>
-                                    <%} %>
+                            <div>
+                                <div><label for="Title">Title</label></div>
+                                <textarea name="Review[Title]" id="Title" cols="20" rows="1"></textarea>
                             </div>
-            </div>
+                            <div><label for="Tags">Body</label></div>
+                            <textarea name="Review[Tags]" id="Body" cols="60" rows="5"></textarea>
 
+                            <div>
+                                <button id="submit" type="submit">Submit</button>
+                            </div>
+                        </div>
+                </form>
 
+                <% } %>
 
-
-        </div>
+                    <script>
+                        const hospitalLocal = <%-JSON.stringify(hospital) %>
+                    </script>
+                    <script src="/js/map.js"></script>
+                    <script src="/js/carousel.js"></script>
+                    <script src="/js/carousel.js"></script>
     </div>
-    <script>
-        const hospitalLocal = <%-JSON.stringify(hospital) %>
-    </script>
-    <script src="/js/map.js"></script>
+    </div>
+    </div>
+    </div>
