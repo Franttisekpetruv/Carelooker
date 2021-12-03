@@ -157,9 +157,9 @@ app.use((err, req, res, next) => {
     const { statusCode = 500, message = "Something went wrong" } = err;
     res.status(statusCode).send(message);
 });
-
-app.listen(3003, () => {
-    console.log("listening");
+const port = process.env.PORT || 3003
+app.listen(port, () => {
+    console.log("listening on ${port}");
 });
 
 //* CODE WHICH CAN BE USED LATER FOR VALIDATION
