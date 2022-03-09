@@ -10,45 +10,46 @@
                 <%=hospitals.length %> hospitals in Michigan
             </h1>
             <% for(let hospital of hospitals) { %>
-                <% for(img of hospital.Image) {%>
 
 
-                    <% } %>
-                        <li class="card" style="background-image: url( ' <%=img.url%> ')">
-                            <div class="card-content">
-                                <div class="card-top">
-                                    <!-- <div id="speciality">Speciality</div>
+
+                <li class="card" style="background-image: url( ' <%=img.url%> ')">
+
+                    <div class="card-content">
+                        <div class="card-top">
+
+                            <!-- <div id="speciality">Speciality</div>
                                     <div id="rating">
                                         <%=hospital.Reviews.Rating%>
                                     </div> -->
 
-                                </div>
-                                <ul class="card-text">
-                                    <a class="title" href="/show/<%=hospital._id%>">
-                                        <%= hospital.Name %>
-                                    </a>
+                        </div>
+                        <ul class="card-text">
+                            <a class="title" href="/show/<%=hospital._id%>">
+                                <%= hospital.Name %>
+                            </a>
 
-                                    <ul class="details">
-                                        <li class="detail">
-                                            <img class="detail-image" src="img/pin.png" alt="">
+                            <ul class="details">
+                                <li class="detail">
+                                    <img class="detail-image" src="img/pin.png" alt="">
 
-                                            <%= hospital.City %>
+                                    <%= hospital.City %>
 
-                                        </li>
-                                        <li class="detail"> <img class="detail-image" src="img/bed.png" alt="">
-                                            <%= hospital.StaffedBeds %>
-                                        </li>
-                                        <li class="detail"> <img class="detail-image" src="img/dollar.png" alt="">
-                                            <%= hospital.GrossPatientRevenue %>
-                                        </li>
-                                    </ul>
+                                </li>
+                                <li class="detail"> <img class="detail-image" src="img/bed.png" alt="">
+                                    <%= hospital.StaffedBeds %>
+                                </li>
+                                <li class="detail"> <img class="detail-image" src="img/dollar.png" alt="">
+                                    <%= hospital.GrossPatientRevenue %>
+                                </li>
+                            </ul>
 
-                                </ul>
+                        </ul>
 
-                        </li>
+                </li>
 
 
-                        <%} %>
+                <%} %>
         </ul>
 
 
