@@ -78,7 +78,7 @@ const store = new MongoDBStore({
     touchAfter: 24 * 60 * 60,
 });
 store.on("error", function(e) {
-    console.log("session store erroe", e);
+    console.log("session store error", e);
 });
 const sessionConfig = {
     store,
@@ -159,7 +159,7 @@ app.use((err, req, res, next) => {
 });
 const port = process.env.PORT || 3007;
 app.listen(port, () => {
-    console.log(`listening on ${port}`);
+    console.log(`Listening on ${port}`);
 });
 
 //* CODE WHICH CAN BE USED LATER FOR VALIDATION

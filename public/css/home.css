@@ -2,7 +2,7 @@ body {
     height: 100vh;
     margin: 0;
     font-family: "Montserrat", sans-serif;
-    background-color: #f7f9ff;
+    background-color: white;
     overflow-x: hidden;
 }
 
@@ -36,6 +36,7 @@ li {
     border-radius: 20px;
     background-color: white;
     padding: 10px;
+    box-shadow: 0px 0px 10px;
 }
 
 .alert {
@@ -46,7 +47,7 @@ li {
     margin-inline: auto;
     z-index: 3;
     width: 100%;
-    font-size: 30px;
+    font-size: 20   px;
     padding: 0.5em, 0.6em;
 }
 
@@ -204,6 +205,10 @@ h4 {
     flex-basis: 33%;
     max-width: 10vw;
 }
+h2{ 
+    margin: auto;
+    margin-top:1em;
+}
 
 .card {
     box-shadow: 0em 0em 0.6em 0.5em rgba(0, 0, 0, 0.055);
@@ -213,11 +218,11 @@ h4 {
     position: relative;
     display: flex;
     padding: 1em;
-    justify-content: space-evenly;
+    justify-content: center;
     flex-direction: column;
     margin-block: 2vh;
-    margin-inline: 1.5em;
-    width: 17vw;
+    margin-inline: 10px;
+    width: 250px;
     height: 40vh;
     border-radius: 1.2em;
 }
@@ -235,40 +240,34 @@ h4 {
     margin-top: auto;
     height: fit-content;
     padding: 1em;
-    background-color: rgba(255, 255, 255, 0.67);
+    background-color: rgba(255, 255, 255, 0.95);
     width: 80%;
     font-size: 1rem;
 }
 
-h2 {
-    text-align: center;
-}
 
-.hero h2 {
-    border-top: black solid 3px;
-    padding-top: 1em;
-    text-align: center;
-    width: inherit;
-    margin-inline: auto;
-}
+
+
 
 .show-reviews {
     display: relative;
     flex-direction: row;
 }
 
-textarea {}
 
 .review {
-    padding-left: 3em;
-    margin-inline: auto;
-    height: fit-content;
-    flex-basis: 40%;
-    color: black;
+    margin: auto;
+ justify-content:center ;
+ align-items: center;
+ text-align: center;
+ border: #c9c9c9 solid 2px ;
+ border-radius: 10px;
+ width: 500px;
+ margin-top: 1em;
 }
 
 .slide {
-    color: red;
+
     position: relative;
     margin-top: 30px;
     width: 100%;
@@ -282,8 +281,18 @@ textarea {}
 }
 
 .reviews {
+  
     display: flex;
     justify-content: center;
+}
+.starability-basic{
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: fit-content;
+    color: black;
+
 }
 
 .review-cards {
@@ -324,13 +333,6 @@ button {
     margin-bottom: 20px;
 }
 
-#map {
-    position: relative;
-    left: 0;
-    height: 50vh;
-    width: 40vw;
-    top: 0;
-}
 
 #rating {
     font-size: 1.2em;
@@ -342,11 +344,13 @@ button {
 #michigan-map {
     right: 0;
     position: fixed;
+    justify-content: right;
     height: 100vh;
-    width: 45vw;
+    width: 50vw;
 }
 
 .hospital-list {
+    align-content:stretch;
     position: absolute;
     box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 50px 10px;
     display: flex;
@@ -374,21 +378,12 @@ h1 {
     margin-top: 400px;
 }
 
-.hero {
-    width: 100%;
-    border-bottom: black solid 3px;
-    display: flex;
-    flex-direction: row;
-    justify-items: flex-start;
-    align-items: flex-start;
-}
-
 .container {
-    margin-bottom: 0;
-    margin-inline: auto;
-    overflow-x: hidden;
-    overflow-y: hidden;
+    display:flex;
     flex-direction: column;
+    
+
+    
 }
 
 ul {
@@ -402,51 +397,83 @@ ul {
 
 #feature-text {
     margin-left: 1em;
+
 }
 
-#bannerimg {
-    object-fit: cover;
-    width: 100vw;
-    height: 40vh;
-    text-align: center;
-    opacity: 60%;
-}
+
 
 .features {
-    color: black;
-    padding: 2em;
-    height: 20vh;
+    height: fit-content;
+  
     font-size: 2em;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    padding: .5em;
 }
 
-.features li {
-    width: fit-content;
+.features li {    width: fit-content;
     margin-top: 1em;
     margin-left: 2em;
     border-bottom: black solid 2px;
 }
 
-.hero-right {
-    height: 50vh;
-    width: 60vw;
-    position: static;
-    display: flex;
-    margin-left: auto;
-    flex-direction: column;
-    align-items: flex-start;
-    left: 0;
-}
-
 .banner {
     z-index: -1;
-    display: grid;
+display: flex;
+flex-direction: row;
+flex-wrap: nowrap;
     align-items: center;
+
 }
+#bannerimg {
+    object-fit: cover;
+    flex-grow: 1;
+    height: 40vh;
+
+    text-align: center;
+}
+
+#hsTitle {
+    border-bottom: solid 1px black;
+    color: black;
+    font-size: 2.5rem;
+    justify-content: center;
+    display: flex;
+    min-width: 300px;
+
+
+}
+.hero {
+    border-bottom: solid 2px black;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+}
+#map {
+    flex-grow: 1;
+    height: 50vh;
+    width: 40vw;
+}
+.hero-right {  
+flex-grow:4;
+    display: flex;
+    flex-direction: column;
+    left: 0;
+   
+}
+.logbut{ color: white;
+margin-right: 1em;}
+.footer{
+    display: flex;
+    justify-content: space-around;
+    height: fit-content;
+    background-color: rgb(72, 72, 72);
+    margin-top: 4em;
+    color: seashell;
+    padding: 2em;
+    shad
+    
+}
+
 
 .warning {
     width: 80px;
@@ -465,18 +492,7 @@ ul {
     background-color: lightcoral;
 }
 
-#hsTitle {
-    color: black;
-    font-size: 2.5rem;
-    position: absolute;
-    text-align: center;
-    margin-top: 2.5em;
-    justify-content: center;
-    display: flex;
-    min-width: 300px;
-    margin-inline: auto;
-    width: 100vw;
-}
+
 
 #submit {
     transition: 0.5s;
@@ -495,4 +511,15 @@ ul {
     background-color: lightgreen;
     color: white;
     border-radius: 50px;
+}
+@media (max-width: 1024px) {
+    #michigan-map {
+        display: none;
+    }
+}
+
+@media (max-width: 1024px) {
+    .hospital-list {
+       width:100vw
+    }
 }

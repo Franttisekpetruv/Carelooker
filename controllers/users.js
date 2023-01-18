@@ -14,14 +14,14 @@ module.exports.registerUser = async(req, res, next) => {
     req.login(registeredUser, (err) => {
         if (err) return next(err);
     });
-    req.flash("success", "welcome");
+    req.flash("success", "Welcome");
     res.redirect("/hospitals");
 };
 module.exports.loginUser = (req, res) => {
     res.render("login.ejs");
 };
 module.exports.authUser = async(req, res) => {
-    req.flash("success", "welcome back");
+    req.flash("success", "Welcome back");
     const redirectUrl = req.session.returnTo || "/hospitals";
     delete req.session.returnTo;
     console.log(req.user._id);
@@ -30,6 +30,6 @@ module.exports.authUser = async(req, res) => {
 };
 module.exports.logoutUser = (req, res) => {
     req.logout();
-    req.flash("success", "logged out");
+    req.flash("success", "Logged you out");
     res.redirect("/");
 };

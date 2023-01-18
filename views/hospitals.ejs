@@ -11,9 +11,13 @@
             </h1>
             <% for(let hospital of hospitals) { %>
 
+                <%if(hospital.Image.length) {%>
+                    <li  class="card" style="background-image: url(<%=hospital.Image[0].url%>)">
+                    <%}else{%>
+                        <li class="card" style="background-image: url(https://s3-alpha.figma.com/hub/file/948140848/1f4d8ea7-e9d9-48b7-b70c-819482fb10fb-cover.png)">
+                <%}%>
 
-
-                <li class="card" style="background-image: url( 'https://res.cloudinary.com/dplk6nkcu/image/upload/v1623634180/Carelooker/krqzc17uzfwx5gdd8mwo.jpg ')">
+                <!-- <li class="card" style="background-image: url(<%=hospital.Image.url%>)"> -->
 
                     <div class="card-content">
                         <div class="card-top">
@@ -27,7 +31,8 @@
                         <ul class="card-text">
                             <a class="title" href="/show/<%=hospital._id%>">
                                 <%= hospital.Name %>
-                            </a>
+                               
+                                </a>
 
                             <ul class="details">
                                 <li class="detail">
@@ -58,7 +63,8 @@
         <script>
             const hospitals =
                 <%-JSON.stringify(hospitals) %>
+            
         </script>
 
-        <script src="/js/michiganMap.js"></script>
+        <script id="mapM" src="/js/michiganMap.js"></script>
     </div>

@@ -12,7 +12,7 @@ module.exports.isAuthor = async(req, res, next) => {
     const { id } = req.params;
     const hospital = await hospitaldata2.findById(id);
     if (!hospital.Owner.equal(req.user._id)) {
-        req.flash("error", "NO REMISSION");
+        req.flash("error", "NO PREMISSION");
         res.redirect(`/show/${hospital._id}`);
     }
     next();

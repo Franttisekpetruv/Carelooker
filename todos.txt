@@ -1,8 +1,15 @@
+Functional
+Web scrape all lists of hospitals 
+Let users sort by state on the front page
+Use an image scraper to populate Images
+
 Main Page----------------------------------------------------------------
 Add the specialty or remove them all together with
 Add names of hospitals to the pins once user zooms in the
+
 Hospital Page----------------------------------------------------------------
 Fix the pin on the map for the name and thumbnails
 Fix styling and review styling for
 New Page----------------------------------------------------------------
 Make styles for the Page
+
